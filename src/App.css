@@ -1,31 +1,107 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: #282c34;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.book {
+  width: 600px;
+  height: 400px;
+  position: relative;
+  perspective: 1500px;
+  margin-bottom: 20px;
 }
 
-.heart {
-  color: #ff0000;
+.book .page {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  color: black;
+  font-size: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.8s ease;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+  backface-visibility: hidden;
+  z-index: 1;
 }
 
-.small {
-  font-size: 0.75rem;
+.book .page.left {
+  left: 0;
+  transform-origin: right;
+}
+
+.book .page.right {
+  right: 0;
+  transform-origin: left;
+}
+
+.book .page.current {
+  z-index: 2;
+}
+
+.book .current.right.page.turn {
+  transform: rotateY(-180deg);
+}
+
+.book .current.left.page.turn {
+  transform: rotateY(180deg);
+}
+
+.book .next.left.page {
+  transform: rotateY(180deg);
+}
+
+.book .next.left.page.turn {
+  transform: rotateY(0deg);
+}
+
+.book .prev.right.page {
+  transform: rotateY(-180deg);
+}
+
+.book .prev.right.page.turn {
+  transform: rotateY(0deg);
+}
+
+.book .page.none {
+  background: transparent;
+}
+
+.book .page.white {
+  background: white;
+}
+
+.btns {
+  text-align: center;
+  width: 600px;
+}
+
+.btns button {
+  font-size: 30px;
+  margin: 0 10px;
+  padding: 10px 30px;
+  cursor: pointer;
+  background-color: #61dafb;
+  border: none;
+  border-radius: 5px;
+  color: #282c34;
+  font-weight: bold;
+}
+
+.btns button:hover {
+  background-color: #4fa8c5;
+}
+
+.btns button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
