@@ -11,7 +11,7 @@ function Page({ id, color, position, status, isTurning }) {
 
   return (
     <div className={classNames}>
-      {id}
+      {id !== '0' && id}
     </div>
   );
 }

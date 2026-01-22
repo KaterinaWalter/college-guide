@@ -29,14 +29,19 @@ function App() {
 
     if (!newLeftData && !newRightData) return;
 
-    setIsTurning(true);
-    setTurningDirection(direction);
-
+    // Set up next/prev pages first
     if (isNext) {
       setNextPages({ left: newLeftData, right: newRightData });
     } else {
       setPrevPages({ left: newLeftData, right: newRightData });
     }
+
+    // Use requestAnimationFrame to ensure the browser paints the initial state
+    // before applying the animation transform
+    requestAnimationFrame(() => {
+      setIsTurning(true);
+      setTurningDirection(direction);
+    });
 
     setTimeout(() => {
       const newIdx = isNext ? currentIdx + 2 : currentIdx - 2;
